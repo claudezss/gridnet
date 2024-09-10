@@ -1,0 +1,2 @@
+include gridnet/VERSION
+recursive-include gridnet py.typed

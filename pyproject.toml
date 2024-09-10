@@ -1,0 +1,86 @@
+[build-system]
+# Minimum requirements for the build system to execute.
+requires = [
+  # sync with setup.py until we discard non-pep-517/518
+  "setuptools>=45.0",
+  "setuptools-scm[toml]>=6.2.3",
+  "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["gridnet"]
+
+
+[project]
+name = "pygridnet"
+dynamic = ["version"]
+authors = [
+  { name="Yan Zhang", email="dev.claude.yan.zhang@gmail.com" },
+]
+description = "A python library to create simple power grid and calculate powerflow."
+readme = "README.md"
+keywords = ["python", "power system", "power grid", "powerflow", "machine learning"]
+license = { file="LICENSE" }
+requires-python = ">=3.11"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries"
+]
+
+dependencies = [
+    "pandas",
+    "numpy"
+]
+
+[project.optional-dependencies]
+
+dev = ["pre-commit"]
+doc = [
+    "wheel",
+    "mkdocs-material",
+    "mknotebooks",
+    "matplotlib",
+    "notebook",
+]
+test = [
+    "pytest",
+    "pytest-cov"
+]
+
+
+[project.urls]
+"Homepage" = "https://github.com/claudezss/gridnet"
+"Bug Tracker" = "https://gitlab.com/claudezss/gridnet/-/issues"
+
+
+[tool.isort]
+force_grid_wrap=0
+include_trailing_comma=true
+line_length=120
+multi_line_output=3
+skip_glob=["env/*", 'docs/*']
+profile = "black"
+
+[tool.black]
+line_length = 120
+include = ["gridnet/*", "tests/*"]
+
+[tool.mypy]
+strict=true
+ignore_missing_imports=true
+disallow_subclassing_any=false
+exclude = ['env', 'venv', '.venv', 'tests/*', 'docs/*']
+files = ["gridnet/*"]
+
+[[tool.mypy.overrides]]
+module = [
+    "click.*",
+    "bin.*"
+]
+ignore_errors = true
+
+[tool.pytest.ini_options]

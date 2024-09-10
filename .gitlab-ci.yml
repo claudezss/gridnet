@@ -1,0 +1,15 @@
+image: python:3.12-slim
+
+
+stages:
+  - lint
+
+lint:
+  stage: lint
+  before_script:
+    - pip install .[dev]
+  script:
+    - pre-commit run --all-files
+  except:
+    refs:
+      - tags
