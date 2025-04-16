@@ -7,7 +7,9 @@ stages:
 lint:
   stage: lint
   before_script:
-    - pip install .[dev]
+    - apt update && apt install git -y
+    - pip install uv
+    - uv pip install -r pyproject.toml --extra dev --system
   script:
     - pre-commit run --all-files
   except:
