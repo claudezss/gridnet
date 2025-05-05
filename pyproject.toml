@@ -33,12 +33,17 @@ classifiers = [
 
 dependencies = [
     "pandas",
-    "numpy"
+    "numpy",
+    "pyarrow",
+    "scikit-learn",
+    "pyiceberg[s3fs]",
+    "sqlalchemy",
+    "torch>=2.7.0",
 ]
 
 [project.optional-dependencies]
-
-dev = ["pre-commit"]
+pandapower = ["pandapower['all']"]
+dev = ["pre-commit", "ruff", "isort", "mypy", "flake8"]
 doc = [
     "wheel",
     "mkdocs-material",
@@ -84,3 +89,8 @@ module = [
 ignore_errors = true
 
 [tool.pytest.ini_options]
+
+[tool.flake8]
+max-line-length =120
+exclude = [".git", "__pycache__", "dist"]
+max-complexity = 10
