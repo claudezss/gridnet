@@ -1,38 +1,18 @@
 repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0  # Use the latest stable revision
+    hooks:
+      # Ensures that every file ends with a single newline character
+      - id: end-of-file-fixer
   - repo: local
     hooks:
       - id: ruff-format
         name: ruff-format
         language: system
         entry: ruff format
-        types: [ python ]
+        types_or: [ python, jupyter ]
       - id: ruff-check
         name: ruff-check
         language: system
         entry: ruff check
-        types: [ python ]
-  - repo: local
-    hooks:
-      - id: isort
-        name: isort
-        language: system
-        entry: isort
-        types: [python]
-
-  - repo: local
-    hooks:
-      - id: flake8
-        name: flake8
-        language: system
-        entry: flake8
-        types: [ python ]
-        args: [--max-line-length=120]
-
-  - repo: local
-    hooks:
-      - id: mypy
-        name: mypy
-        language: system
-        entry: mypy
-        types: [ python ]
-
+        types_or: [ python, jupyter ]
